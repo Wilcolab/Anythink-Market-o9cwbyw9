@@ -111,10 +111,13 @@ function signPressed() {
 }
 
 function operationPressed(op) {
-    operand1 = getValue();
-    operation = op;
-    state = states.operator;
+  if (op === '^') {
+    currentOperation = 'power';
+  } else {
+    currentOperation = op;
+  }
 }
+
 
 function equalPressed() {
     if (state < states.operand2) {

@@ -33,6 +33,9 @@ function calculate(operand1, operand2, operation) {
         case '/':
             uri += "?operation=divide";
             break;
+        case '^':                               
+        uri += "?operation=power";
+        break;
         default:
             setError();
             return;
@@ -111,12 +114,14 @@ function signPressed() {
 }
 
 function operationPressed(op) {
-  if (op === '^') {
-    currentOperation = 'power';
-  } else {
-    currentOperation = op;
-  }
+    if (state < states.operator) {
+        operand1 = getValue();
+        state = states.operator;
+    }
+    operation = op;   // ✅ THIS is what calculate() expects
 }
+
+
 
 
 function equalPressed() {
